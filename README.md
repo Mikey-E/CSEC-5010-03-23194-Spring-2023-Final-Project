@@ -12,6 +12,8 @@ py -m pytest test
 
 This will run all tests. If you wish to run specfic test files, replace "test" with test/path/to/test_file.py
 
+Test cases are largely self-documenting.
+
 ## 5010 Extension
 
 The extension is the addendum in the Project_Design_Document folder.

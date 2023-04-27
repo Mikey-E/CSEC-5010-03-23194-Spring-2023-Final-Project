@@ -20,7 +20,7 @@ class CheckedPassword:
 		self.conditions = self.check(self.__password)
 		self.warnings = self.user_friendly_warnings(*self.conditions)
 
-	def check(self, password:str) -> (bool, list):
+	def check(self, password:str) -> list:
 		"""
 		Takes a password and returns whether or not it is secure,
 		along with a list of failed conditions
@@ -34,10 +34,17 @@ class CheckedPassword:
 
 		return conditions.test(password)
 
-	def user_friendly_warnings(self, *args:tuple[pws.tests_base.ATest]) -> list[str]:
+	def user_friendly_warnings(self,
+		*args:tuple[pws.tests_base.ATest],
+		comPath:str="../common_passwords/top_100k.txt",
+		)\
+		-> list[str]:
 		"""
-		Returns user friendly string of any failed test case(s).
+		Returns user friendly string of any failed policies(s),
+		and/or the warning that the password is common.
 		"""
+
+		#First the name to warning conversion
 		mapping = {
 			"length"	:	"Suggested length",
 			"uppercase"	:	"Suggested uppercase characters",
@@ -45,6 +52,12 @@ class CheckedPassword:
 			"special"	:	"Suggested special characters",
 		}
 
-		return [mapping[arg.name()] + ": " + \
+		policy_strings = [mapping[arg.name()] + ": " + \
 			(str(arg.count) if arg.name() != "length" else str(arg.length))\
 			for arg in args]
+
+		#Next getting the list for the common password warning
+		with open(comPath, "r") as f:
+			passwords = f.read().splitlines()
+
+		return policy_strings + (["One of the most common passwords"] if self.__password in passwords else [])
