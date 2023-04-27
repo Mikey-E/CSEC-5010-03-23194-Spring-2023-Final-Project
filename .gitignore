@@ -1,1 +1,6 @@
+
+#Folder with .bat files that speed up development/testing
+#Readme should contain such instructions as well
 dev-utils
+
+__pycache__
