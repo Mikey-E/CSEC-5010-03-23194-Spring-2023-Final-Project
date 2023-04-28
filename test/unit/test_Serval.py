@@ -13,6 +13,16 @@ sys.path.append(os.path.normpath(os.path.join(cd, '..', '..', "src/")))
 from serval import Serval
 from pwcheck import CheckedPassword
 
+def setup_serval(func):
+	"""decorator for setting up the Serval with the directory and password"""
+	def wrapper():
+		s = Serval()
+		s.setOutputDirectory(cd)
+		password = "asdfasdfasdf1!A"
+		s.setCheckedPassword(password)
+		func(s)
+	return wrapper
+
 def test_setOutputDirectory_not_exist():
 	s = Serval()
 	assert s.setOutputDirectory("asdf") == False
@@ -45,20 +55,14 @@ def test_create_handle_no_extension():
 	os.remove(cd + "/" + "testasdf.serval")
 	assert "testasdf.serval" not in os.listdir(cd)
 
-def test_create_key():
-	s = Serval()
-	s.setOutputDirectory(cd)
-	password = "asdfasdfasdf1!A"
-	s.setCheckedPassword(password)
+@setup_serval
+def test_create_key(s:Serval):
 	key = s.create_key()
 	assert len(key) == 44 #Base64 encoded 32 bytes
 	assert type(key) == bytes
 
-def test_update():
-	s = Serval()
-	s.setOutputDirectory(cd)
-	password = "asdfasdfasdf1!A"
-	s.setCheckedPassword(password)
+@setup_serval
+def test_update(s:Serval):
 	fileName = "test_update.serval"
 	message = "This is the message to be encrypted"
 	s.update(fileName, message)
@@ -70,22 +74,16 @@ def test_update():
 	os.remove(cd + "/" + fileName)
 	assert fileName not in os.listdir(cd)
 
-def test_delete():
-	s = Serval()
-	s.setOutputDirectory(cd)
-	password = "asdfasdfasdf1!A"
-	s.setCheckedPassword(password)
+@setup_serval
+def test_delete(s:Serval):
 	fileName = "test_delete"
 	s.create(fileName)
 	assert fileName + ".serval" in os.listdir(cd)
 	s.delete(fileName)
 	assert fileName + ".serval" not in os.listdir(cd)
 
-def test_read():
-	s = Serval()
-	s.setOutputDirectory(cd)
-	password = "asdfasdfasdf1!A"
-	s.setCheckedPassword(password)
+@setup_serval
+def test_read(s:Serval):
 	fileName = "test_read.serval"
 	message = "This is the message to be encrypted, then read"
 	s.update(fileName, message)
