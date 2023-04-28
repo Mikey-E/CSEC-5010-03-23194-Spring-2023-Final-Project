@@ -55,7 +55,8 @@ class Serval:
 			f.write(bytes())
 
 	def read(self, fileName:str):
-		pass
+		with open(self.outputDirectory + "/" + self.remove_serval_extension(fileName) + ".serval", "rb") as f:
+			return self.fernet.decrypt(f.read()).decode()
 
 	def update(self, fileName:str, string:str):
 		"""writes an encrypted message to a .serval file"""

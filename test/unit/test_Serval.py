@@ -80,3 +80,15 @@ def test_delete():
 	assert fileName + ".serval" in os.listdir(cd)
 	s.delete(fileName)
 	assert fileName + ".serval" not in os.listdir(cd)
+
+def test_read():
+	s = Serval()
+	s.setOutputDirectory(cd)
+	password = "asdfasdfasdf1!A"
+	s.setCheckedPassword(password)
+	fileName = "test_read.serval"
+	message = "This is the message to be encrypted, then read"
+	s.update(fileName, message)
+	assert s.read(fileName) == message
+	s.delete(fileName)
+	assert fileName + ".serval" not in os.listdir(cd)
