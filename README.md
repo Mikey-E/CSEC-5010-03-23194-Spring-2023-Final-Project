@@ -2,6 +2,9 @@
 
 ## Usage
 
+Notes:
+- Depending on your operating system and/or settings, it may be necessary to run the terminal with adiministrator priveleges.
+
 To launch the application:
 
 py src/serval.py
