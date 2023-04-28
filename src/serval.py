@@ -63,7 +63,7 @@ class Serval:
 			f.write(self.fernet.encrypt(string.encode()))
 
 	def delete(self, fileName:str):
-		pass
+		os.remove(self.outputDirectory + "/" + self.remove_serval_extension(fileName) + ".serval")
 
 def main():
 	pass

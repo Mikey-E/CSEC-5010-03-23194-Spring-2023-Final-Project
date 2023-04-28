@@ -69,3 +69,14 @@ def test_update():
 	assert message == fern_for_decryption.decrypt(contents).decode(), "encryption was not reversed to same message"
 	os.remove(cd + "/" + fileName)
 	assert fileName not in os.listdir(cd)
+
+def test_delete():
+	s = Serval()
+	s.setOutputDirectory(cd)
+	password = "asdfasdfasdf1!A"
+	s.setCheckedPassword(password)
+	fileName = "test_delete"
+	s.create(fileName)
+	assert fileName + ".serval" in os.listdir(cd)
+	s.delete(fileName)
+	assert fileName + ".serval" not in os.listdir(cd)
