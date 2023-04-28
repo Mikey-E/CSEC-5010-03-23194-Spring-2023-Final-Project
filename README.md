@@ -63,6 +63,10 @@ In addition to being encrypted, .serval files are also made obscure by default.
 
 Trust is strictly password-based. There are no exceptions for accessing .serval files.
 
+## Misc notes
+
+Docstrings have been omitted for functions that seemed self-documenting and needed no more context about their operation
+
 ## 5010 Extension
 
 The extension is the addendum in the Project_Design_Document folder.
