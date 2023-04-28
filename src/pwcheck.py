@@ -8,7 +8,7 @@ import password_strength as pws
 class CheckedPassword:
 
 	def __init__(self, password:str, length:int=12, uppercase:int=1, numbers:int=1, special:int=1):
-		self.__password = password
+		self.password = password
 
 		#Recommendations
 		self.length = length
@@ -17,7 +17,7 @@ class CheckedPassword:
 		self.special = special
 	
 		#Determined based on password and recommendations
-		self.conditions = self.check(self.__password)
+		self.conditions = self.check(self.password)
 		self.warnings = self.user_friendly_warnings(*self.conditions)
 
 	def check(self, password:str) -> list:
@@ -60,4 +60,4 @@ class CheckedPassword:
 		with open(comPath, "r") as f:
 			passwords = f.read().splitlines()
 
-		return policy_strings + (["One of the most common passwords"] if self.__password in passwords else [])
+		return policy_strings + (["One of the most common passwords"] if self.password in passwords else [])
