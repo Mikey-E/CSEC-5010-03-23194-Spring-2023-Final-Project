@@ -67,3 +67,5 @@ def test_update():
 	assert len(contents) > 0, "File is empty"
 	fern_for_decryption = Fernet(s.create_key())
 	assert message == fern_for_decryption.decrypt(contents).decode(), "encryption was not reversed to same message"
+	os.remove(cd + "/" + fileName)
+	assert fileName not in os.listdir(cd)
