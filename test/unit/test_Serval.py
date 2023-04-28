@@ -48,6 +48,7 @@ def test_create_key():
 	s = Serval()
 	s.setOutputDirectory(cd)
 	password = "asdfasdfasdf1!A"
-	key = s.create_key(CheckedPassword(password))
+	s.setCheckedPassword(password)
+	key = s.create_key()
 	assert len(key) == 44 #Base64 encoded 32 bytes
 	assert type(key) == bytes

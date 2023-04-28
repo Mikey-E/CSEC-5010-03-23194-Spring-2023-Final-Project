@@ -4,6 +4,7 @@
 
 import os
 from getpass import getpass
+from cryptography.fernet import Fernet
 from cryptography.hazmat.primitives import hashes
 from base64 import b64encode
 
@@ -41,9 +42,9 @@ class Serval:
 		except IndexError:
 			return fileName
 
-	def create_key(self, cpw:CheckedPassword):
+	def create_key(self):
 		digest = hashes.Hash(hashes.SHA256())
-		digest.update(cpw.password.encode())
+		digest.update(self.checkedPassword.password.encode())
 		return b64encode(digest.finalize())
 
 	#CRUD functions follow
@@ -56,6 +57,7 @@ class Serval:
 		pass
 
 	def update(self, fileName:str, string:str):
+		"""writes an encrypted message to a .serval file"""
 		pass
 
 	def delete(self, fileName:str):
