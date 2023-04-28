@@ -4,6 +4,7 @@
 
 import sys
 import os
+from cryptography.fernet import Fernet
 
 #Importability setup
 cd = os.path.dirname(os.path.abspath(__file__))
@@ -52,3 +53,17 @@ def test_create_key():
 	key = s.create_key()
 	assert len(key) == 44 #Base64 encoded 32 bytes
 	assert type(key) == bytes
+
+def test_update():
+	s = Serval()
+	s.setOutputDirectory(cd)
+	password = "asdfasdfasdf1!A"
+	s.setCheckedPassword(password)
+	fileName = "test_update.serval"
+	message = "This is the message to be encrypted"
+	s.update(fileName, message)
+	with open(cd + "/" + fileName, "rb") as f:
+		contents = f.read()
+	assert len(contents) > 0, "File is empty"
+	fern_for_decryption = Fernet(s.create_key())
+	assert message == fern_for_decryption.decrypt(contents).decode(), "encryption was not reversed to same message"
