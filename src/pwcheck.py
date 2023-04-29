@@ -36,7 +36,7 @@ class CheckedPassword:
 
 	def user_friendly_warnings(self,
 		*args:tuple[pws.tests_base.ATest],
-		comPath:str="../common_passwords/top_100k.txt",
+		comPath:str="common_passwords/top_100k.txt",
 		)\
 		-> list[str]:
 		"""
