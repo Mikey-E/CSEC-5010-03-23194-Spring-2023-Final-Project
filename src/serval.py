@@ -34,7 +34,7 @@ class Serval:
 				print(warning)
 			print("\nHighly consider using a different password")
 
-	def remove_serval_extension(self, fileName:str) -> str:
+	def base_name(self, fileName:str) -> str:
 		"""removes .serval extension if it exists"""
 		try:
 			if fileName[-7:] == ".serval":
@@ -51,7 +51,7 @@ class Serval:
 	#CRUD functions follow
 	def create(self, fileName:str) -> bool:
 		"""create an empty new .serval file"""
-		fileName = self.remove_serval_extension(fileName)
+		fileName = self.base_name(fileName)
 		if fileName + ".serval" in os.listdir(self.outputDirectory):
 			return False
 		with open(self.outputDirectory + "/" + fileName + ".serval", "wb") as f:
@@ -59,7 +59,7 @@ class Serval:
 		return True
 
 	def read(self, fileName:str):
-		with open(self.outputDirectory + "/" + self.remove_serval_extension(fileName) + ".serval", "rb") as f:
+		with open(self.outputDirectory + "/" + self.base_name(fileName) + ".serval", "rb") as f:
 			contents = f.read()
 			if len(contents) == 0:
 				return ""
@@ -67,11 +67,11 @@ class Serval:
 
 	def update(self, fileName:str, string:str):
 		"""writes an encrypted message to a .serval file"""
-		with open(self.outputDirectory + "/" + self.remove_serval_extension(fileName) + ".serval", "wb") as f:
+		with open(self.outputDirectory + "/" + self.base_name(fileName) + ".serval", "wb") as f:
 			f.write(self.fernet.encrypt(string.encode()))
 
 	def delete(self, fileName:str):
-		os.remove(self.outputDirectory + "/" + self.remove_serval_extension(fileName) + ".serval")
+		os.remove(self.outputDirectory + "/" + self.base_name(fileName) + ".serval")
 
 def main():
 	pass
