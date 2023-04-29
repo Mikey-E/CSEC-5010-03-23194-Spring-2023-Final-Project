@@ -17,7 +17,7 @@ cd test
 
 py -m pytest
 
-This will run all tests. If you wish to run specfic test files, replace "test" with test/path/to/test_file.py
+This will run all tests. If you wish to run specfic test files, name a specific file after pytest
 
 Test cases are largely self-documenting.
 
