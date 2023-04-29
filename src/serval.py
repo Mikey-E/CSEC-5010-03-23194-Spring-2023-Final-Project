@@ -59,11 +59,14 @@ class Serval:
 		return True
 
 	def read(self, fileName:str) -> str:
-		with open(self.outputDirectory + "/" + self.base_name(fileName) + ".serval", "rb") as f:
-			contents = f.read()
-			if len(contents) == 0:
-				return ""
-			return self.fernet.decrypt(contents).decode()
+		try:
+			with open(self.outputDirectory + "/" + self.base_name(fileName) + ".serval", "rb") as f:
+				contents = f.read()
+				if len(contents) == 0:
+					return ""
+				return self.fernet.decrypt(contents).decode()
+		except FileNotFoundError:
+			return ""
 
 	def update(self, fileName:str, string:str):
 		"""writes an encrypted message to a .serval file"""
