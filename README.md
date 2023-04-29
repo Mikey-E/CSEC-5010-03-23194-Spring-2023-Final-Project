@@ -7,15 +7,27 @@ Notes:
 
 To launch the application:
 
-py src/serval.py
+cd src
+
+py GUI.py
 
 ### Testing
 
-py -m pytest test
+cd test
+
+py -m pytest
 
 This will run all tests. If you wish to run specfic test files, replace "test" with test/path/to/test_file.py
 
 Test cases are largely self-documenting.
+
+## Dependencies
+
+- Python 3.11.2
+- PySimpleGUI 4.60.4
+- cryptography 39.0.0
+- password_strength 0.0.3.post2
+- pytest 7.3.1
 
 ## Secure design patterns
 
@@ -65,7 +77,7 @@ Trust is strictly password-based. There are no exceptions for accessing .serval 
 
 ## Misc notes
 
-Docstrings have been omitted for functions that seemed self-documenting and needed no more context about their operation
+- Docstrings have been omitted for functions that seemed self-documenting and needed no more context about their operation
 
 ## 5010 Extension
 
