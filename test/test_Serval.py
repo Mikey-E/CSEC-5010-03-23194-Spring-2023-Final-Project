@@ -8,7 +8,7 @@ from cryptography.fernet import Fernet
 
 #Importability setup
 cd = os.path.dirname(os.path.abspath(__file__))
-sys.path.append(os.path.normpath(os.path.join(cd, '..', '..', "src/")))
+sys.path.append(os.path.normpath(os.path.join(cd, '..', "src/")))
 
 from serval import Serval
 from pwcheck import CheckedPassword

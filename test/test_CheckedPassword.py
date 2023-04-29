@@ -7,7 +7,7 @@ import os
 
 #Importability setup
 cd = os.path.dirname(os.path.abspath(__file__))
-sys.path.append(os.path.normpath(os.path.join(cd, '..', '..', "src/")))
+sys.path.append(os.path.normpath(os.path.join(cd, '..', "src/")))
 
 from pwcheck import CheckedPassword
 
