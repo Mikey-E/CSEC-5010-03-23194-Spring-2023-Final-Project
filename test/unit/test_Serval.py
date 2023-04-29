@@ -55,6 +55,17 @@ def test_create_handle_no_extension():
 	os.remove(cd + "/" + "testasdf.serval")
 	assert "testasdf.serval" not in os.listdir(cd)
 
+def test_create_double():
+	s = Serval()
+	s.setOutputDirectory(cd)
+	fileName = "double_create_check.serval"
+	assert(s.create(fileName))
+	assert fileName in os.listdir(cd)
+	assert(not s.create(fileName))
+	assert fileName in os.listdir(cd)
+	s.delete(fileName)
+	assert fileName not in os.listdir(cd)
+
 @setup_serval
 def test_create_key(s:Serval):
 	key = s.create_key()

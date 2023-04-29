@@ -49,14 +49,21 @@ class Serval:
 		return b64encode(digest.finalize())
 
 	#CRUD functions follow
-	def create(self, fileName:str):
+	def create(self, fileName:str) -> bool:
 		"""create an empty new .serval file"""
-		with open(self.outputDirectory + "/" + self.remove_serval_extension(fileName) + ".serval", "wb") as f:
+		fileName = self.remove_serval_extension(fileName)
+		if fileName + ".serval" in os.listdir(self.outputDirectory):
+			return False
+		with open(self.outputDirectory + "/" + fileName + ".serval", "wb") as f:
 			f.write(bytes())
+		return True
 
 	def read(self, fileName:str):
 		with open(self.outputDirectory + "/" + self.remove_serval_extension(fileName) + ".serval", "rb") as f:
-			return self.fernet.decrypt(f.read()).decode()
+			contents = f.read()
+			if len(contents) == 0:
+				return ""
+			return self.fernet.decrypt(contents).decode()
 
 	def update(self, fileName:str, string:str):
 		"""writes an encrypted message to a .serval file"""
