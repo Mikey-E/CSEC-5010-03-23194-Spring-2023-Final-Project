@@ -58,7 +58,7 @@ class Serval:
 			f.write(bytes())
 		return True
 
-	def read(self, fileName:str):
+	def read(self, fileName:str) -> str:
 		with open(self.outputDirectory + "/" + self.base_name(fileName) + ".serval", "rb") as f:
 			contents = f.read()
 			if len(contents) == 0:
