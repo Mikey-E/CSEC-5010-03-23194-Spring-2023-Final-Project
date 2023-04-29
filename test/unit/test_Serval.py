@@ -33,11 +33,11 @@ def test_setOutputDirectory_does_exist():
 
 def test_remove_extension():
 	s = Serval()
-	assert s.remove_serval_extension("asdf.serval") == "asdf"
+	assert s.base_name("asdf.serval") == "asdf"
 
 def test_remove_no_extension():
 	s = Serval()
-	assert s.remove_serval_extension("asdf") == "asdf"
+	assert s.base_name("asdf") == "asdf"
 
 def test_create_handle_extension():
 	s = Serval()
@@ -90,8 +90,9 @@ def test_delete(s:Serval):
 	fileName = "test_delete"
 	s.create(fileName)
 	assert fileName + ".serval" in os.listdir(cd)
-	s.delete(fileName)
+	assert(s.delete(fileName))
 	assert fileName + ".serval" not in os.listdir(cd)
+	assert(not s.delete(fileName))
 
 @setup_serval
 def test_read(s:Serval):

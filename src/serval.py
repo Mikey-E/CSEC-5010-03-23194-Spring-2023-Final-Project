@@ -70,8 +70,12 @@ class Serval:
 		with open(self.outputDirectory + "/" + self.base_name(fileName) + ".serval", "wb") as f:
 			f.write(self.fernet.encrypt(string.encode()))
 
-	def delete(self, fileName:str):
-		os.remove(self.outputDirectory + "/" + self.base_name(fileName) + ".serval")
+	def delete(self, fileName:str) -> bool:
+		try:
+			os.remove(self.outputDirectory + "/" + self.base_name(fileName) + ".serval")
+			return True
+		except FileNotFoundError:
+			return False
 
 def main():
 	pass
