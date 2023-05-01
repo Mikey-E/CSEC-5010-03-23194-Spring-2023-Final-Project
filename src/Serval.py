@@ -18,7 +18,7 @@ class Serval:
 	def set_checked_password(self, password:str=None):
 		self.__checkedPassword = CheckedPassword(password if password != None else getpass())
 		self.display_warnings()
-		self.fernet = Fernet(self.create_key())
+		self.__fernet = Fernet(self.create_key())
 
 	def set_output_directory(self, path:str=".") -> bool:
 		"""Changes where the .serval files are to be operated on"""
@@ -65,7 +65,7 @@ class Serval:
 				if len(contents) == 0:
 					return ""
 				try:
-					return self.fernet.decrypt(contents).decode()
+					return self.__fernet.decrypt(contents).decode()
 				except InvalidToken:
 					return None
 		except FileNotFoundError:
@@ -74,7 +74,7 @@ class Serval:
 	def update(self, fileName:str, string:str):
 		"""writes an encrypted message to a .serval file"""
 		with open(self.outputDirectory + "/" + self.base_name(fileName) + ".serval", "wb") as f:
-			f.write(self.fernet.encrypt(string.encode()))
+			f.write(self.__fernet.encrypt(string.encode()))
 
 	def delete(self, fileName:str) -> bool:
 		try:
