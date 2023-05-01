@@ -15,12 +15,12 @@ class Serval:
 	def __init__(self):
 		self.outputDirectory = "."
 
-	def setCheckedPassword(self, password:str=None):
+	def set_checked_password(self, password:str=None):
 		self.__checkedPassword = CheckedPassword(password if password != None else getpass())
 		self.display_warnings()
 		self.fernet = Fernet(self.create_key())
 
-	def setOutputDirectory(self, path:str=".") -> bool:
+	def set_output_directory(self, path:str=".") -> bool:
 		"""Changes where the .serval files are to be operated on"""
 		if not os.path.exists(path):
 			return False

@@ -12,7 +12,7 @@ class GUI():
 	def __init__(self):
 		self.serval = Serval()
 
-	def refreshFileList(self, fileListBox):
+	def refresh_file_list(self, fileListBox):
 		accessibleFilesList = []
 		for file in os.listdir(self.serval.outputDirectory):
 			if self.serval.read(file) != None:
@@ -70,9 +70,9 @@ class GUI():
 				break
 
 			if event == "refreshButton":
-				self.serval.setOutputDirectory(values["workingDirectoryField"])
-				self.serval.setCheckedPassword(values["passwordField"])
-				self.refreshFileList(fileListBox)
+				self.serval.set_output_directory(values["workingDirectoryField"])
+				self.serval.set_checked_password(values["passwordField"])
+				self.refresh_file_list(fileListBox)
 				feedbackText.update(
 					value="Refreshed - showing files accessible with current password." + (
 						("\n--Password WARNINGS--\n" + "\n".join(self.serval.get_warnings()))\
@@ -84,7 +84,7 @@ class GUI():
 			elif event == "Create":
 				if values["createField"]  != "":
 					if (self.serval.create(values["createField"])):
-						self.refreshFileList(fileListBox)
+						self.refresh_file_list(fileListBox)
 						createField.update(value="")
 						feedbackText.update(value="Created.")
 					else:
@@ -109,7 +109,7 @@ class GUI():
 				try:
 					fileName = values["fileListBox"][0]
 					if (self.serval.delete(fileName)):
-						self.refreshFileList(fileListBox)
+						self.refresh_file_list(fileListBox)
 						feedbackText.update(value="Deleted " + fileName)
 					else:
 						feedbackText.update(value=fileName + " not deleted.")

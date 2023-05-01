@@ -17,19 +17,19 @@ def setup_serval(func):
 	"""decorator for setting up the Serval with the directory and password"""
 	def wrapper():
 		s = Serval()
-		s.setOutputDirectory(cd)
+		s.set_output_directory(cd)
 		password = "asdfasdfasdf1!A"
-		s.setCheckedPassword(password)
+		s.set_checked_password(password)
 		func(s)
 	return wrapper
 
-def test_setOutputDirectory_not_exist():
+def test_set_output_directory_not_exist():
 	s = Serval()
-	assert s.setOutputDirectory("asdf") == False
+	assert s.set_output_directory("asdf") == False
 
-def test_setOutputDirectory_does_exist():
+def test_set_output_directory_does_exist():
 	s = Serval()
-	assert s.setOutputDirectory("/") == True
+	assert s.set_output_directory("/") == True
 
 def test_remove_extension():
 	s = Serval()
@@ -41,7 +41,7 @@ def test_remove_no_extension():
 
 def test_create_handle_extension():
 	s = Serval()
-	s.setOutputDirectory(cd)
+	s.set_output_directory(cd)
 	s.create("testasdf.serval")
 	assert "testasdf.serval" in os.listdir(cd)
 	os.remove(cd + "/" + "testasdf.serval")
@@ -49,7 +49,7 @@ def test_create_handle_extension():
 
 def test_create_handle_no_extension():
 	s = Serval()
-	s.setOutputDirectory(cd)
+	s.set_output_directory(cd)
 	s.create("testasdf")
 	assert "testasdf.serval" in os.listdir(cd)
 	os.remove(cd + "/" + "testasdf.serval")
@@ -57,7 +57,7 @@ def test_create_handle_no_extension():
 
 def test_create_double():
 	s = Serval()
-	s.setOutputDirectory(cd)
+	s.set_output_directory(cd)
 	fileName = "double_create_check.serval"
 	assert(s.create(fileName))
 	assert fileName in os.listdir(cd)
