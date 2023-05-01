@@ -9,7 +9,7 @@ import os
 cd = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(os.path.normpath(os.path.join(cd, '..', "src/")))
 
-from pwcheck import CheckedPassword
+from CheckedPassword import CheckedPassword
 
 def test_policy_criteria():
 	cpw = CheckedPassword("asdfqmdiqlk")

@@ -8,7 +8,7 @@ from cryptography.fernet import Fernet, InvalidToken
 from cryptography.hazmat.primitives import hashes
 from base64 import b64encode
 
-from pwcheck import CheckedPassword
+from CheckedPassword import CheckedPassword
 
 class Serval:
 

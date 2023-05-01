@@ -10,8 +10,8 @@ from cryptography.fernet import Fernet
 cd = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(os.path.normpath(os.path.join(cd, '..', "src/")))
 
-from serval import Serval
-from pwcheck import CheckedPassword
+from Serval import Serval
+from CheckedPassword import CheckedPassword
 
 def setup_serval(func):
 	"""decorator for setting up the Serval with the directory and password"""

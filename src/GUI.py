@@ -5,7 +5,7 @@
 import os
 import PySimpleGUI as psg
 
-from serval import Serval
+from Serval import Serval
 
 class GUI():
 
