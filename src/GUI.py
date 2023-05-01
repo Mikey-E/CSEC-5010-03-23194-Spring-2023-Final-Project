@@ -75,8 +75,8 @@ class GUI():
 				self.refreshFileList(fileListBox)
 				feedbackText.update(
 					value="Refreshed - showing files accessible with current password." + (
-						("\n--Password WARNINGS--\n" + "\n".join(self.serval.checkedPassword.warnings))\
-						if len(self.serval.checkedPassword.warnings) != 0 else ""
+						("\n--Password WARNINGS--\n" + "\n".join(self.serval.get_warnings()))\
+						if len(self.serval.get_warnings()) != 0 else ""
 					)
 				)
 				if values["workingDirectoryField"] != "":

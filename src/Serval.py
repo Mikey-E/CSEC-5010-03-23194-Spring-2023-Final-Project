@@ -16,7 +16,7 @@ class Serval:
 		self.outputDirectory = "."
 
 	def setCheckedPassword(self, password:str=None):
-		self.checkedPassword = CheckedPassword(password if password != None else getpass())
+		self.__checkedPassword = CheckedPassword(password if password != None else getpass())
 		self.display_warnings()
 		self.fernet = Fernet(self.create_key())
 
@@ -28,9 +28,9 @@ class Serval:
 		return True
 
 	def display_warnings(self):
-		if len(self.checkedPassword.warnings) > 0:
+		if len(self.__checkedPassword.warnings) > 0:
 			print("\nWARNING - Password is insecure - suggested improvements below\n")
-			for warning in self.checkedPassword.warnings:
+			for warning in self.__checkedPassword.warnings:
 				print(warning)
 			print("\nHighly consider using a different password")
 
@@ -45,7 +45,7 @@ class Serval:
 
 	def create_key(self):
 		digest = hashes.Hash(hashes.SHA256())
-		digest.update(self.checkedPassword.password.encode())
+		digest.update(self.__checkedPassword.password.encode())
 		return b64encode(digest.finalize())
 
 	#CRUD functions follow
@@ -82,6 +82,8 @@ class Serval:
 			return True
 		except FileNotFoundError:
 			return False
+	def get_warnings():
+		return self.__checkedPassword.warnings
 
 def main():
 	pass
