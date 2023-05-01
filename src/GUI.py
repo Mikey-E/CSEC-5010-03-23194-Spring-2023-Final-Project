@@ -94,7 +94,8 @@ class GUI():
 			elif event == "Read":
 				try:
 					fileName = values["fileListBox"][0]
-					contentBox.update(value=self.serval.read(fileName))
+					readData = self.serval.read(fileName)
+					contentBox.update(value=(readData if readData != None else ""))
 					feedbackText.update(value="Showing contents of " + fileName)
 				except IndexError:
 					feedbackText.update(value="No file selected.")
