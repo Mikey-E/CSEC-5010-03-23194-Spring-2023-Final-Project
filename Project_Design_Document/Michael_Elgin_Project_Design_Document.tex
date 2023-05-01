@@ -35,25 +35,25 @@ The GUI will allow the user to interact with the system visually instead of usin
 
 \subsection{Password Security Checker}
 
-This component will provide standard checks on a password to ensure it is secure, such as length, use of numbers/capitals/specials/etc. It will warn the user if their chosen password is insecure and allow them to override this if desired by the user.
+This component will provide standard checks on a password to ensure it is secure, such as length, use of numbers/capitals/specials/etc. It will warn the user if their chosen password is insecure on both the terminal and GUI.
 
 \subsection{Middleware}
 
-This connects all the components together. It contains the main function that runs at startup, causes the GUI to launch, and everything else to happen. It handles the cryptography, and will most likely base an encryption key off a hash of a user password.
+This connects all the components together. It contains the functions that are called by the GUI. It performs read/write operations on the file system. It handles the cryptography, and bases an encryption key off a hash of a user password.
 
 \subsection{Data Files}
 
-These files will be the journal documents which are securely encrypted. At no time will these ever sit at rest on the file system decrypted. They will have their own unique file extension to help identify them on the file system.
+These files will be the data documents which are securely encrypted. At no time will these ever sit at rest on the file system decrypted. They will have their own unique file extension to help identify them on the file system.
 
 \section{Component Interactions}
 
-The middleware will be the starting point of the program; it will launch the GUI and be the only channel of interaction to it. The GUI allows the user to make calls to the middleware through buttons and menus, which in turn interacts with the password security checker and the datafiles. Middleware interacts with the password security checker by importing it. Middleware interacts with datafiles through file system read/write operations.
+The GUI will be the starting point of the program; it will launch the middleware and be the main channel of interaction to it, though the middleware could also be interfaced with programmatically. The GUI allows the user to make calls to the middleware through buttons and menus, which in turn interacts with the password security checker and the datafiles. Middleware interacts with the password security checker by importing it. Middleware interacts with datafiles through file system read/write operations.
 The GUI, password security checker, and data files have no direct interactions between themselves; they are completely mediated by the middleware.
 
 \section{Security Challenges and Assumptions}
 
 \subsection{Challenges}
-The first challenge is privacy design. It must be that the contents of data files are kept secret. If a data file is acquired by anyone other than someone who has the password, it should not be readable. A second challenge is to ensure the passwords created by the user are secure i.e. they do not choose passwords that would be easily guessed, brute-forced, or otherwise learned by an attacker. A third challenge is that the encryption key must be based off the password in a secure way. There should be no shortcuts from the password to the key.
+The first challenge is privacy design. It must be that the contents of data files are kept secret. If a data file is acquired by anyone other than someone who has the password, it should not be readable. A second challenge is to help ensure the passwords created by the user are secure i.e. they do not choose passwords that would be easily guessed, brute-forced, or otherwise learned by an attacker. A third challenge is that the encryption key must be based off the password in a secure way. There should be no shortcuts from the password to the key.
 
 \subsection{Assumptions}
 One assumption as per Kerckhoff's principle is that the software itself, including its code, need not be hidden. The same instance of it could securely be used by multiple different users, even in the same working directory, so long as passwords are kept secret. A second assumption is that the cryptography library will also ensure integrity with message authentication codes.
@@ -64,7 +64,7 @@ This software is not a distributed system, and the security concerns of a distri
 
 \subsection{High-level proof sketch}
 
-\includegraphics[scale=0.4]{High_Level_Proof_Sketch.png}
+\includegraphics[scale=0.6]{High_Level_Proof_Sketch.png}
 
 \subsection{External threats}
 
@@ -76,8 +76,12 @@ The software is designed and expected to be portable to any system that can run 
 
 \subsection{Threats created by interfacing}
 
-The most prominent threat created by interfacing is of course the possibility (intentional or not) of an interfacing component passing the wrong type. By using types in functions within the system, the need for input validation is significantly reduced; there need only be checks on the accepted type. Moreover, this also reduces the amount of security vulnerabilities by virtue of there being fewer unhandled exceptions. Another threat is that different versions of dependencies may return different types. To mitigate any differences in types that may be returned by dependency versions, specific versions of dependencies are strictly enforced.
+The most prominent threat created by interfacing is the possibility that someone could construct a Serval object and pass bad input to its methods. In the case of the function to set the checked password, the object passed will cause an exception unless it is something that can be converted into a string and checked as such. When setting any output directory, any type that does not resolve to a string that is a valid directory path on the file system will cause the function to return False as it should. The CRUD functions are a similar case since they present no security hazards from wrong types.
 
-% (when done) Basically look thru all the types in everything everywhere and hypothesize what could go wrong if someone stuck something bad in there. Then explain, along with your types(/typehints) how you're checking to prevent that.
+For CheckedPassword objects, the check function presents no risks from wrong types, as does the way user-friendly warnings are gathered, since if the input does not resolve to certain strings in a mapping there will be a keyError exception.
+
+Programmatically specifying bad input could cause an exception to be thrown, but it should not cause any security hazards.
+
+Another threat is that different versions of dependencies may return different types. To help reduce the chance that any differences in dependency version cause a return of different types, specific versions of dependencies are listed in the README.md and are considered a recommendation.
 
 \end{document}

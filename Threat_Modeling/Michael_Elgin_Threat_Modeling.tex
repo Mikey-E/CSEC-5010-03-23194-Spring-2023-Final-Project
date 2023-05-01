@@ -31,6 +31,9 @@ This Threat Modeling document is in reference to the Project Design Document fro
 As a first step in accessing any data that someone is not supposed to access, they first must actually get possession of it. Someone could stumble upon it by dint of happenstance, or they could intentionally seek it.
 
 Mitigation: As a first priority, the encrypted data files should be relatively hidden. Forcing the files to have obscure names is somewhat of an overkill. Not to mention the user may very well want to give the files their own names for the sake of staying organized. By default, they will be secluded in a non-obvious location (folder) with an inconspicuous name. This ``security through obscurity" is not the backbone making the application secure. It is merely the icing on the cake.
+\newline
+\newline
+Update May 1, 2023: GUI users are now required to set their own location as opposed to being given one by default.
 
 \subsection{Determining the plaintext}
 
