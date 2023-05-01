@@ -27,6 +27,9 @@ class Serval:
 		self.outputDirectory = path
 		return True
 
+	def get_warnings(self):
+		return self.__checkedPassword.warnings
+
 	def display_warnings(self):
 		if len(self.__checkedPassword.warnings) > 0:
 			print("\nWARNING - Password is insecure - suggested improvements below\n")
@@ -82,8 +85,6 @@ class Serval:
 			return True
 		except FileNotFoundError:
 			return False
-	def get_warnings(self):
-		return self.__checkedPassword.warnings
 
 def main():
 	pass
