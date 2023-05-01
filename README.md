@@ -10,8 +10,8 @@ py src/GUI.py
 
 The application will start with a field in which to designate a working directory, and a field to type a password.
 This password can be anything, even nothing (which is of course not recommended, but still results in files being
-encrypted with an empty string as the basis for the encryption. One might do this to make a .serval file available to anyone
-using the software).
+encrypted with an empty string as the basis for the encryption. One might do this to make a .serval file easily
+available to anyone using the software).
 
 Once these 2 fields have been chosen, click Refresh Files and Password. Now you will see a list of files in the working
 directory for which you have access based on your password. You can read data from a selected file into the text box on the
