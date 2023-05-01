@@ -1,7 +1,8 @@
 # COSC-5010-03-23194-Spring-2023-Final-Project
 
 This software stores any information in encrypted files. It can be thought of as like Notepad, but "Notepad *secure*" because
-it does not leave plaintext .txt files but rather encrypted files called .serval files.
+it does not leave plaintext .txt files but rather encrypted files called .serval files, named after the African cat. Informally, this is an acronym for
+**s**ecure **e**ncrypted **r**epository (of) **v**aluable **a**sset **l**anguage.
 
 In the interest of usability, this final version allows users to use any password they want, even if it is possibly insecure,
 however it still makes sure to warn them on both the GUI and terminal if they are doing so.
@@ -85,11 +86,11 @@ All software components are mediated by a single piece of middleware, serval.py
 
 Trust is strictly password-based. There are no exceptions for accessing .serval files.
 
-## Misc notes
+## Miscellaneous notes
 
 - Docstrings have been omitted for functions that seemed self-documenting and needed no more context about their operation
 - Modified (tampered) .serval files are considered corrupt and not loaded into the list of files.
-- An empty .serval file is considered available for anyone to write to (not password protected).
+- An empty .serval file is considered available for anyone to write to (not yet password protected).
 
 ## 5010 Extension
 
