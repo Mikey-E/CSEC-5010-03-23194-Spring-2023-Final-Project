@@ -10,12 +10,14 @@ py src/GUI.py
 
 The application will start with a field in which to designate a working directory, and a field to type a password.
 This password can be anything, even nothing (which is of course not recommended, but still results in files being
-encrypted with an empty string as the basis for the encryption).
+encrypted with an empty string as the basis for the encryption. One might do this to make a .serval file available to anyone
+using the software).
 
 Once these 2 fields have been chosen, click Refresh Files and Password. Now you will see a list of files in the working
 directory for which you have access based on your password. You can read data from a selected file into the text box on the
 right with the Read button, make edits, and update the selected file with the Update button.
-The Delete button will delete the selected file from the file system. Create will create a file if it does not already exist.
+The Delete button will delete the selected file from the file system. Create will create a file if it does not already exist,
+and that new file will be accessible only with the supplied password once some content has been updated to it.
 
 Open up a .serval file with another editor on the filesystem, and you will see the contents securely encrypted.
 
