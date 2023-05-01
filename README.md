@@ -1,5 +1,11 @@
 # COSC-5010-03-23194-Spring-2023-Final-Project
 
+This software stores any information in encrypted files. It can be thought of as like Notepad, but "Notepad *secure*" because
+it does not leave plaintext .txt files but rather encrypted files called .serval files.
+
+In the interest of usability, this final version allows users to use any password they want, even if it is possibly insecure,
+however it still makes sure to warn them on both the GUI and terminal if they are doing so.
+
 ## Usage
 
 Depending on your operating system and/or settings, it may be necessary to run the terminal with adiministrator priveleges.
