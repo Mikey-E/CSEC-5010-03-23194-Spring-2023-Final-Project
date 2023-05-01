@@ -27,7 +27,7 @@ class Serval:
 		self.outputDirectory = path
 		return True
 
-	def get_warnings(self):
+	def get_warnings(self) -> list[str]:
 		return self.__checkedPassword.warnings
 
 	def display_warnings(self):
@@ -46,7 +46,7 @@ class Serval:
 		except IndexError:
 			return fileName
 
-	def create_key(self):
+	def create_key(self) -> bytes:
 		digest = hashes.Hash(hashes.SHA256())
 		digest.update(self.__checkedPassword.password.encode())
 		return b64encode(digest.finalize())
