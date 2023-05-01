@@ -68,7 +68,7 @@ This software is not a distributed system, and the security concerns of a distri
 
 \subsection{External threats}
 
-One possible threat from an attacker is to change the contents of a .serval file. Though because of the HMAC built into the fernet tokens, this will be detected and an exception will be thrown. Type checking that the returned contents are not None will prevent such meddling from being passed through the chain of execution.
+One possible threat from an attacker is to change the contents of a .serval file. Though because of the HMAC built into the fernet tokens, this will be detected and an InvalidToken exception will be thrown. Handling this exception and type checking that the returned contents are None will prevent such meddling from being passed through the chain of execution.
 
 \subsection{The system being run on}
 

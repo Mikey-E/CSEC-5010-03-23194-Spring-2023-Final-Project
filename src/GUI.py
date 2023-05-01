@@ -15,10 +15,9 @@ class GUI():
 	def refreshFileList(self, fileListBox):
 		accessibleFilesList = []
 		for file in os.listdir(self.serval.outputDirectory):
-			try:
-				self.serval.read(file)
+			if self.serval.read(file) != None:
 				accessibleFilesList.append(file)
-			except:
+			else:
 				continue
 		fileListBox.update(accessibleFilesList)
 

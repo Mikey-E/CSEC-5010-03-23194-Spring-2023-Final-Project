@@ -4,7 +4,7 @@
 
 import os
 from getpass import getpass
-from cryptography.fernet import Fernet
+from cryptography.fernet import Fernet, InvalidToken
 from cryptography.hazmat.primitives import hashes
 from base64 import b64encode
 
@@ -64,7 +64,10 @@ class Serval:
 				contents = f.read()
 				if len(contents) == 0:
 					return ""
-				return self.fernet.decrypt(contents).decode()
+				try:
+					return self.fernet.decrypt(contents).decode()
+				except InvalidToken:
+					return None
 		except FileNotFoundError:
 			return ""
 

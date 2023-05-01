@@ -86,6 +86,7 @@ Trust is strictly password-based. There are no exceptions for accessing .serval 
 ## Misc notes
 
 - Docstrings have been omitted for functions that seemed self-documenting and needed no more context about their operation
+- Modified (tampered) .serval files are considered corrupt and not loaded into the list of files.
 
 ## 5010 Extension
 
