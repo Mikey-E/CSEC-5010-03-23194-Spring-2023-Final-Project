@@ -2,22 +2,30 @@
 
 ## Usage
 
-Notes:
-- Depending on your operating system and/or settings, it may be necessary to run the terminal with adiministrator priveleges.
+Depending on your operating system and/or settings, it may be necessary to run the terminal with adiministrator priveleges.
 
-To launch the application:
+To launch the application, run the following command:
 
-cd src
+py src/GUI.py
 
-py GUI.py
+The application will start with a field in which to designate a working directory, and a field to type a password.
+This password can be anything, even nothing (which is of course not recommended, but still results in files being
+encrypted with an empty string as the basis for the encryption).
+
+Once these 2 fields have been chosen, click Refresh Files and Password. Now you will see a list of files in the working
+directory for which you have access based on your password. You can read data from a selected file into the text box on the
+right with the Read button, make edits, and update the selected file with the Update button.
+The Delete button will delete the selected file from the file system. Create will create a file if it does not already exist.
+
+Open up a .serval file with another editor on the filesystem, and you will see the contents securely encrypted.
 
 ### Testing
 
-cd test
+py -m pytest test
 
-py -m pytest
+This will run all tests. If you wish to run specific test files, name a specific file after pytest e.g.
 
-This will run all tests. If you wish to run specfic test files, name a specific file after pytest
+py -m pytest test/\<file\>.py
 
 Test cases are largely self-documenting.
 
@@ -81,4 +89,4 @@ Trust is strictly password-based. There are no exceptions for accessing .serval 
 
 ## 5010 Extension
 
-The extension is the addendum in the Project_Design_Document folder.
+The extension is the addendum in the Project_Design_Document folder of Michael_Elgin_Project_Design_Document.pdf

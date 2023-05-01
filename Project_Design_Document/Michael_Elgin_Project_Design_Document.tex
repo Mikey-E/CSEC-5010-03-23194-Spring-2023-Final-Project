@@ -5,7 +5,7 @@
 
 %Sometimes imports
 \usepackage{comment}
-%\usepackage{graphicx}
+\usepackage{graphicx}
 
 %biblatex (as opposed to bibtex) parts
 %\usepackage[style=numeric]{biblatex}
@@ -60,5 +60,24 @@ One assumption as per Kerckhoff's principle is that the software itself, includi
 
 This software is not a distributed system, and the security concerns of a distributed system are not relevant here. However, if a data file were to be sent across a network, it should still be secure by virtue of its encryption.
 
+\section{Addendum April 26, 2023 - 5010 Extension}
+
+\subsection{High-level proof sketch}
+
+\includegraphics[scale=0.4]{High_Level_Proof_Sketch.png}
+
+\subsection{External threats}
+
+One possible threat from an attacker is to change the contents of a .serval file. Though because of the HMAC built into the fernet tokens, this will be detected and an exception will be thrown. Type checking that the returned contents are not None will prevent such meddling from being passed through the chain of execution.
+
+\subsection{The system being run on}
+
+The software is designed and expected to be portable to any system that can run Python 3.11. As such it makes no mention of any particular operating system or hardware. One threat is that the system may mishandle .serval files. The use of types is meant to ensure that no matter how any underlying system may mishandle the storage of .serval files, the software always receives the proper type to operate on. 
+
+\subsection{Threats created by interfacing}
+
+The most prominent threat created by interfacing is of course the possibility (intentional or not) of an interfacing component passing the wrong type. By using types in functions within the system, the need for input validation is significantly reduced; there need only be checks on the accepted type. Moreover, this also reduces the amount of security vulnerabilities by virtue of there being fewer unhandled exceptions. Another threat is that different versions of dependencies may return different types. To mitigate any differences in types that may be returned by dependency versions, specific versions of dependencies are strictly enforced.
+
+% (when done) Basically look thru all the types in everything everywhere and hypothesize what could go wrong if someone stuck something bad in there. Then explain, along with your types(/typehints) how you're checking to prevent that.
 
 \end{document}
