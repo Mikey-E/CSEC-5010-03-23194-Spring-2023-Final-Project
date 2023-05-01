@@ -82,7 +82,7 @@ class Serval:
 			return True
 		except FileNotFoundError:
 			return False
-	def get_warnings():
+	def get_warnings(self):
 		return self.__checkedPassword.warnings
 
 def main():
