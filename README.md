@@ -71,12 +71,6 @@ The protected assets (.serval files) are accessible only by password. Nothing el
 
 All software components are mediated by a single piece of middleware, serval.py
 
-### Redundancy
-
-#### Defense in depth
-
-In addition to being encrypted, .serval files are also made obscure by default.
-
 ### Trust and responsibility
 
 #### Reluctance to trust
