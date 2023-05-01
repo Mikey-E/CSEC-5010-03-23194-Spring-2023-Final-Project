@@ -88,7 +88,7 @@ class GUI():
 						createField.update(value="")
 						feedbackText.update(value="Created.")
 					else:
-						feedbackText.update(value="File not created.")
+						feedbackText.update(value="File not created - already exists.")
 				else:
 					feedbackText.update(value="Create field cannot be empty.")
 			elif event == "Read":
