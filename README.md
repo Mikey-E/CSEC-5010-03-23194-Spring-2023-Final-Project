@@ -1,4 +1,6 @@
-# COSC-5010-03-23194-Spring-2023-Final-Project
+# Notepad-Secure
+
+Final project for COSC-5010-03-23194, spring 2023.
 
 This software stores any information in encrypted files. It can be thought of as like Notepad, but "Notepad *secure*" because
 it does not leave plaintext .txt files but rather encrypted files called .serval files, named after the African cat. Informally, this is an acronym for
